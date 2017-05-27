@@ -23,7 +23,7 @@ public class Objective : MonoBehaviour {
 
     public Card.CardType GetFirstCard()
     {
-        return m_currentObjective.m_objectives[0];
+        return m_currentObjective.m_objectives.Count >= 1 ? m_currentObjective.m_objectives[0] : Card.CardType.Blank;
     }
 
     public void RemoveFirstCard()

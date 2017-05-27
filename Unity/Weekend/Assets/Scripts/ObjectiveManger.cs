@@ -56,7 +56,7 @@ public class ObjectiveManger : MonoBehaviour
         {
             if(m_objective[i].GetFirstCard() == card)
             {
-                
+                m_objective[i].RemoveFirstCard();
             }
         }
     }
