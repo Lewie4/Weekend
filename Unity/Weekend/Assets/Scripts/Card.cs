@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,7 +29,7 @@ public class Card : MonoBehaviour {
             m_cooldownRemaining -= Time.deltaTime;
             if (m_cooldownText != null)
             {
-                m_cooldownText.text = ((int)m_cooldownRemaining).ToString();
+                m_cooldownText.text = (Math.Ceiling(m_cooldownRemaining)).ToString();
             }
         }
     }
