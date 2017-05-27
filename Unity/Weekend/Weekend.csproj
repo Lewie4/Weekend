@@ -93,6 +93,8 @@
     <Compile Include="Assets\Scripts\ActiveCard.cs" />
     <Compile Include="Assets\Scripts\Card.cs" />
     <Compile Include="Assets\Scripts\CardManager.cs" />
+    <Compile Include="Assets\Scripts\ObjectiveManger.cs" />
+    <Compile Include="Assets\Scripts\Objectives.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
