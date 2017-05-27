@@ -13,9 +13,9 @@ public class ObjectiveManger : MonoBehaviour {
     {
         EventManager.StartListening("RefilObjectives", RefilObjectives);
 
-        if(m_possibleObjectives != null)
+        if(m_possibleObjectives == null)
         {
-            m_possibleObjectives.GetComponent<Objectives>();
+            m_possibleObjectives = GetComponent<Objectives>();
         }
 
         RefilObjectives();
