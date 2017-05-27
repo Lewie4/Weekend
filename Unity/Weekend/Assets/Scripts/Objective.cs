@@ -13,6 +13,7 @@ public class Objective : MonoBehaviour {
     [SerializeField] private Slider m_objectiveTimeSlider;
 
     [SerializeField] private List<Card.CardType> m_currentObjective;
+    [SerializeField] private int m_currentObjectiveCount;
 
     private void Start()
     {
@@ -48,6 +49,9 @@ public class Objective : MonoBehaviour {
         {
             m_currentObjective.Add(objective.m_objectives[i]);
         }
+
+        m_currentObjectiveCount = RemainingCurrentObjectives();
+
         for (int i = 0; i < m_currentObjective.Count; i++)
         {
             GameObject card = Instantiate(ObjectiveManger.ms_instance.GetObjectiveCard((int)m_currentObjective[i]));
@@ -67,6 +71,7 @@ public class Objective : MonoBehaviour {
 
         if (m_currentObjective.Count == 0)
         {
+            ObjectiveManger.ms_instance.AddScore(m_currentObjectiveCount);
             GetNextObjective();
         }
     }

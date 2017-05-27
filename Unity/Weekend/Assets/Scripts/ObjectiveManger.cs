@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class ObjectiveManger : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class ObjectiveManger : MonoBehaviour
 
     private Objectives m_possibleObjectives;
     [SerializeField] private List<GameObject> m_ObjectiveCards;
+
+    private int m_levelScore;
+    [SerializeField] private int m_cardScoreValue;
+    [SerializeField] private Text m_levelScoreText;
 
     public static ObjectiveManger ms_instance;
 
@@ -32,6 +37,17 @@ public class ObjectiveManger : MonoBehaviour
         }
 
         RefilObjectives();
+    }
+
+    private void Start()
+    {
+        m_levelScore = 0;
+    }
+
+    public void AddScore(int completedCards)
+    {
+        m_levelScore += (completedCards * m_cardScoreValue);
+        m_levelScoreText.text = "Score: " + m_levelScore.ToString();
     }
 
     private void RefilObjectives()
