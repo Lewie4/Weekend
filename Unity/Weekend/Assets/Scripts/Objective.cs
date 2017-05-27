@@ -4,34 +4,37 @@ using UnityEngine;
 
 public class Objective : MonoBehaviour {
 
-    [SerializeField] private Objectives.CardObjectives m_currentObjective;
+    [SerializeField] private List<Card.CardType> m_currentObjective;
 
     public int RemainingObjectives()
     {
-        return m_currentObjective.m_objectives.Count;
+        return m_currentObjective.Count;
     }
 
     public void SetObjective(Objectives.CardObjectives objective)
     {
-        m_currentObjective = objective;
-        for (int i = 0; i < m_currentObjective.m_objectives.Count; i++)
+        for(int i = 0; i < objective.m_objectives.Count; i++)
         {
-            GameObject card = Instantiate(ObjectiveManger.ms_instance.GetObjectiveCard((int)m_currentObjective.m_objectives[i]));
-            card.transform.SetParent(this.transform);
+            m_currentObjective.Add(objective.m_objectives[i]);
+        }
+        for (int i = 0; i < m_currentObjective.Count; i++)
+        {
+            GameObject card = Instantiate(ObjectiveManger.ms_instance.GetObjectiveCard((int)m_currentObjective[i]));
+            card.transform.SetParent(this.transform.GetChild(0));
         }
     }
 
     public Card.CardType GetFirstCard()
     {
-        return m_currentObjective.m_objectives.Count >= 1 ? m_currentObjective.m_objectives[0] : Card.CardType.Blank;
+        return m_currentObjective.Count >= 1 ? m_currentObjective[0] : Card.CardType.Blank;
     }
 
     public void RemoveFirstCard()
     {
-        m_currentObjective.m_objectives.RemoveAt(0);
-        Destroy(transform.GetChild(0).gameObject);
+        m_currentObjective.RemoveAt(0);
+        Destroy(transform.GetChild(0).GetChild(0).gameObject);
 
-        if (m_currentObjective.m_objectives.Count == 0)
+        if (m_currentObjective.Count == 0)
         {
             EventManager.TriggerEvent("RefilObjectives");
         }
