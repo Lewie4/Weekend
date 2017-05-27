@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class ObjectiveManger : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    [SerializeField] private List<Objective> m_objective;
+
 }
