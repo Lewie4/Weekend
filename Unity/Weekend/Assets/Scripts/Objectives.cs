@@ -6,12 +6,9 @@ public class Objectives : MonoBehaviour {
 
     public enum Difficulty
     {
-        Blank,
-        Red,
-        Yellow,
-        Green,
-        Blue,
-        Purple
+        Easy,
+        Medium,
+        Hard
     };
 
     [SerializeField] private List<CardObjectives> m_possibleObjectives;
