@@ -14,5 +14,9 @@ public class Objective : MonoBehaviour {
     public void SetObjective(Objectives.CardObjectives objective)
     {
         m_currentObjective = objective;
+        for (int i = 0; i < m_currentObjective.m_objectives.Count; i++)
+        {
+            GameObject card = Instantiate(ObjectiveManger.ms_instance.GetObjectiveCard((int)m_currentObjective.m_objectives[i]));
+        }
     }
 }
