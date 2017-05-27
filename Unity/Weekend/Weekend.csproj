@@ -93,6 +93,7 @@
     <Compile Include="Assets\Scripts\ActiveCard.cs" />
     <Compile Include="Assets\Scripts\Card.cs" />
     <Compile Include="Assets\Scripts\CardManager.cs" />
+    <Compile Include="Assets\Scripts\EventManager.cs" />
     <Compile Include="Assets\Scripts\Objective.cs" />
     <Compile Include="Assets\Scripts\ObjectiveManger.cs" />
     <Compile Include="Assets\Scripts\Objectives.cs" />
