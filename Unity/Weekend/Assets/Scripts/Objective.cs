@@ -1,12 +1,43 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Objective : MonoBehaviour {
 
+    [SerializeField] private int m_objectiveCount;
+    [SerializeField] private float m_objectiveTimeRemaining;
+    [SerializeField] private float m_objectiveTime;
+
+    [SerializeField] private Text m_objectiveCountText;
+    [SerializeField] private Slider m_objectiveTimeSlider;
+
     [SerializeField] private List<Card.CardType> m_currentObjective;
 
-    public int RemainingObjectives()
+    private void Start()
+    {
+        m_objectiveTimeRemaining = m_objectiveTime;
+        SetRemainingObjectivesText();
+    }
+
+    private void Update()
+    {
+        if (m_objectiveCount >= 0)
+        {
+            if (m_objectiveTimeRemaining > 0)
+            {
+                m_objectiveTimeRemaining -= Time.deltaTime;
+            }
+            else
+            {
+                RemoveAllCards();
+            }
+        }
+
+        m_objectiveTimeSlider.value = 1 - (m_objectiveTimeRemaining / m_objectiveTime);
+    }
+
+    public int RemainingCurrentObjectives()
     {
         return m_currentObjective.Count;
     }
@@ -36,7 +67,40 @@ public class Objective : MonoBehaviour {
 
         if (m_currentObjective.Count == 0)
         {
-            EventManager.TriggerEvent("RefilObjectives");
+            GetNextObjective();
         }
+    }
+
+    public void RemoveAllCards()
+    {
+        m_currentObjective.Clear();
+        
+        for(int i = 0; i < transform.GetChild(0).childCount; i++)
+        {
+            Destroy(transform.GetChild(0).GetChild(i).gameObject);
+        }
+
+        GetNextObjective();
+        
+    }
+
+    private void GetNextObjective()
+    {
+        if (m_objectiveCount > 0)
+        {
+            EventManager.TriggerEvent("RefilObjectives");
+            m_objectiveCount--;
+            m_objectiveTimeRemaining = m_objectiveTime;
+            SetRemainingObjectivesText();
+        }
+        else
+        {
+            m_objectiveTimeRemaining = 0;
+        }
+    }
+
+    private void SetRemainingObjectivesText()
+    {
+        m_objectiveCountText.text = m_objectiveCount.ToString();
     }
 }

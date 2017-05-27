@@ -38,7 +38,7 @@ public class ObjectiveManger : MonoBehaviour
     {
         for (int i = 0; i < m_objective.Count; i++)
         {
-            if (m_objective[i].RemainingObjectives() <= 0)
+            if (m_objective[i].RemainingCurrentObjectives() <= 0)
             {
                 m_objective[i].SetObjective(m_possibleObjectives.SelectRandomObjective(Objectives.Difficulty.Easy));
             }
