@@ -44,12 +44,13 @@ public class CardManager : MonoBehaviour
         {
             if(m_waitRemaining <= 0)
             {
-                for(int i = 0; i < m_activeCards.Count; i++)
+                ObjectiveManger.ms_instance.RemoveObjective(m_activeCards[0].GetCardType());
+                for (int i = 0; i < m_activeCards.Count; i++)
                 {
                     Card.CardType nextCardType = i + 1 >= m_activeCards.Count ? Card.CardType.Blank : m_activeCards[i + 1].GetCardType();
                     m_activeCards[i].SetCardType(nextCardType);
                 }
-                m_waitRemaining = m_waitTime;
+                m_waitRemaining = m_waitTime;                
             }
             else
             {

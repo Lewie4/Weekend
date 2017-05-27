@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class ObjectiveManger : MonoBehaviour {
+public class ObjectiveManger : MonoBehaviour
+{
 
     [SerializeField] private List<Objective> m_objective;
 
@@ -25,7 +26,7 @@ public class ObjectiveManger : MonoBehaviour {
 
         EventManager.StartListening("RefilObjectives", RefilObjectives);
 
-        if(m_possibleObjectives == null)
+        if (m_possibleObjectives == null)
         {
             m_possibleObjectives = GetComponent<Objectives>();
         }
@@ -37,7 +38,7 @@ public class ObjectiveManger : MonoBehaviour {
     {
         for (int i = 0; i < m_objective.Count; i++)
         {
-            if(m_objective[i].RemainingObjectives() <= 0)
+            if (m_objective[i].RemainingObjectives() <= 0)
             {
                 m_objective[i].SetObjective(m_possibleObjectives.SelectRandomObjective(Objectives.Difficulty.Easy));
             }
@@ -47,5 +48,16 @@ public class ObjectiveManger : MonoBehaviour {
     public GameObject GetObjectiveCard(int card)
     {
         return card < m_ObjectiveCards.Count ? m_ObjectiveCards[card] : null;
+    }
+
+    public void RemoveObjective(Card.CardType card)
+    {
+        for (int i = 0; i < m_objective.Count; i++)
+        {
+            if(m_objective[i].GetFirstCard() == card)
+            {
+                
+            }
+        }
     }
 }
