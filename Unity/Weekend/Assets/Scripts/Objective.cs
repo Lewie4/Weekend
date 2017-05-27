@@ -30,5 +30,10 @@ public class Objective : MonoBehaviour {
     {
         m_currentObjective.m_objectives.RemoveAt(0);
         Destroy(transform.GetChild(0).gameObject);
+
+        if (m_currentObjective.m_objectives.Count == 0)
+        {
+            EventManager.TriggerEvent("RefilObjectives");
+        }
     }
 }
