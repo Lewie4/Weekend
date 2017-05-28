@@ -15,6 +15,7 @@ public class ObjectiveManger : MonoBehaviour
     private int m_levelScore;
     [SerializeField] private int m_cardScoreValue;
     [SerializeField] private Text m_levelScoreText;
+    [SerializeField] private Slider m_levelScoreBar;
 
     public static ObjectiveManger ms_instance;
 
@@ -48,6 +49,7 @@ public class ObjectiveManger : MonoBehaviour
     {
         m_levelScore += (completedCards * m_cardScoreValue);
         m_levelScoreText.text = m_levelScore.ToString();
+        m_levelScoreBar.value = Mathf.Clamp((float)m_levelScore/1500, 0, 1);
     }
 
     private void RefilObjectives()
