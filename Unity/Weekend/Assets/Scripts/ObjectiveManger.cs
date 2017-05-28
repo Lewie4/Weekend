@@ -47,7 +47,7 @@ public class ObjectiveManger : MonoBehaviour
     public void AddScore(int completedCards)
     {
         m_levelScore += (completedCards * m_cardScoreValue);
-        m_levelScoreText.text = "Score: " + m_levelScore.ToString();
+        m_levelScoreText.text = m_levelScore.ToString();
     }
 
     private void RefilObjectives()
