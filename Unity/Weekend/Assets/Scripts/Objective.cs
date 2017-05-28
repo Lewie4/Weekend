@@ -56,6 +56,7 @@ public class Objective : MonoBehaviour {
         {
             GameObject card = Instantiate(ObjectiveManger.ms_instance.GetObjectiveCard((int)m_currentObjective[i]));
             card.transform.SetParent(this.transform.GetChild(0));
+            card.transform.localScale = new Vector3(1, 1, 1);
         }
     }
 
